@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { useRef, useState } from "react";
+import { useRef, useState } from "react"
 
 type RoomProps = {
-  roomId: string;
-};
+  roomId: string
+}
 
 export default function Room({ roomId }: RoomProps) {
-  const [name, setName] = useState<string>();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [name, setName] = useState<string>()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleOnSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setName(inputRef.current?.value);
-  };
+    e.preventDefault()
+    setName(inputRef.current?.value)
+  }
 
   if (!name)
     return (
@@ -29,11 +29,11 @@ export default function Room({ roomId }: RoomProps) {
         ></input>
         <button>OK</button>
       </form>
-    );
+    )
 
   return (
     <main>
       Welcome {name} from {roomId}
     </main>
-  );
+  )
 }
