@@ -14,7 +14,7 @@ export const disconnectedMessageSchema = z.object({
 
 export const participantSchema = z.object({
   connectionId: z.string().nonempty(),
-  name: z.string().nonempty(),
+  name: z.string().nonempty().nullable(),
 })
 
 export const participantsListSchema = z.object({

@@ -67,6 +67,7 @@ export class RoomServer extends Server {
 	}
 
 	onClose(connection: Connection): void | Promise<void> {
+		console.log([...this.names])
 		const name = this.names.get(connection.id)
 		this.names.delete(connection.id)
 

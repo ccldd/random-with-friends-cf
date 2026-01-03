@@ -56,13 +56,14 @@
    * https://developers.cloudflare.com/workers/configuration/secrets/
    */
   "vars": {
-    "PARTYSERVER_HOST": "http://localhost:8787",
+    // "PARTYSERVER_HOST": "http://localhost:8787",
+    "PARTYSERVER_HOST": "random-with-friends-cf-partyserver.ccldd.workers.dev",
   },
-  "env": {
-    "production": {
-      "vars": {
-        "PARTYSERVER_HOST": "random-with-friends-cf.ccldd.workers.dev",
-      },
-    },
-  },
+  // "env": {
+  //   "production": {
+  //     "vars": {
+  //       "PARTYSERVER_HOST": "random-with-friends-cf-partyserver.ccldd.workers.dev",
+  //     },
+  //   },
+  // },
 }
