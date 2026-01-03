@@ -49,25 +49,20 @@
       "id": "beeee85fc43d4dd5a2bdfa010d09f2d2",
     },
   ],
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "ROOM_SERVER",
-        "class_name": "RoomServer",
-      },
-    ],
-  },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_classes": ["RoomServer"],
-    },
-  ],
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
    */
-  // "vars": {  "MY_VARIABLE": "production_value" }
+  "vars": {
+    "PARTYSERVER_HOST": "http://localhost:8787",
+  },
+  "env": {
+    "production": {
+      "vars": {
+        "PARTYSERVER_HOST": "random-with-friends-cf.ccldd.workers.dev",
+      },
+    },
+  },
 }
