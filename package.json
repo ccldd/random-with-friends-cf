@@ -1,0 +1,26 @@
+{
+  "name": "random-with-friends-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "partyserver",
+    "random-with-friends-cf"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:next": "npm run dev -w random-with-friends-cf",
+    "dev:party": "npm run dev -w partyserver",
+    "build": "npm run build -w random-with-friends-cf",
+    "build:party": "npm run build -w partyserver",
+    "deploy": "npm run deploy:next && npm run deploy:party",
+    "deploy:next": "npm run deploy -w random-with-friends-cf",
+    "deploy:party": "npm run deploy -w partyserver",
+    "lint": "npm run lint -w random-with-friends-cf",
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5"
+  }
+}

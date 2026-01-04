@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./shared" },
+    { "path": "./partyserver" },
+    { "path": "./random-with-friends-cf" }
+  ]
+}

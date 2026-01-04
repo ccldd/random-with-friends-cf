@@ -34,10 +34,16 @@
     /* Enable all strict type-checking options. */
 		"strict": true,
 
-    /* Skip type checking all .d.ts files. */
+     /* Skip type checking all .d.ts files. */
 		"skipLibCheck": true,
+		"composite": true,
 		"types": [
 			"./worker-configuration.d.ts"
 		]
-	}
+	},
+	"references": [
+		{ "path": "../shared" }
+	],
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
 }

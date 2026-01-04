@@ -3,16 +3,17 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
-		"cf-typegen": "wrangler types"
+		"deploy": "npx wrangler deploy",
+		"dev": "npx wrangler dev",
+		"start": "npx wrangler dev",
+		"cf-typegen": "npx wrangler types"
 	},
 	"devDependencies": {
 		"typescript": "^5.5.2",
 		"wrangler": "^4.54.0"
 	},
 	"dependencies": {
-		"partyserver": "^0.1.0"
+		"partyserver": "^0.1.0",
+		"shared": "*"
 	}
 }

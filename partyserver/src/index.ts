@@ -8,7 +8,7 @@ import {
 	ConnectedMessage,
 	DisconnectedMessage,
 	ParticipantsMessage,
-} from "../../shared/messages"
+} from "shared"
 
 // Define your Server
 export class RoomServer extends Server {

@@ -2,7 +2,7 @@
 
 import usePartySocket from "partysocket/react"
 import { useState } from "react"
-import { messageSchema, Participant } from "../../../shared/messages"
+import { messageSchema, Participant } from "shared"
 
 type RoomProps = {
   roomId: string
