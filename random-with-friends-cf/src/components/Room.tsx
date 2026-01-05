@@ -1,7 +1,7 @@
 "use client"
 
 import usePartySocket from "partysocket/react"
-import { useState, useEffect, EventHandler, FormEventHandler } from "react"
+import { useState, useEffect } from "react"
 import {
   messageSchema,
   Participant,
@@ -77,7 +77,7 @@ export default function Room({ roomId, name, partyServerHost }: RoomProps) {
   }, [myRandomness, ws])
 
   function handleGenerateRandom() {
-    fetchRandom?.()
+    fetchRandom()
   }
 
   function handleOptionsChanged(e: React.ChangeEvent<HTMLTextAreaElement>) {

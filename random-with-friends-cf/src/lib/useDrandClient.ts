@@ -9,6 +9,22 @@ import {
 
 export type { RandomnessBeacon }
 
+export type DrandClientResult = {
+  randomness: RandomnessBeacon | null
+  isLoading: boolean
+  error: Error | null
+}
+
+export type DrandClientResultWithFetch = DrandClientResult & {
+  fetchRandom: () => void
+}
+
+export function useDrandClient(): DrandClientResultWithFetch
+
+export function useDrandClient(
+  round: number | undefined,
+): DrandClientResult
+
 export function useDrandClient(round?: number) {
   const [randomness, setRandomness] = useState<RandomnessBeacon | null>(null)
   const [isLoading, setIsLoading] = useState(false)
