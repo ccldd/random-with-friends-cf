@@ -1,8 +1,13 @@
 "use client"
 
 import usePartySocket from "partysocket/react"
-import { useState, useEffect } from "react"
-import { messageSchema, Participant, NewRandomMessage } from "shared"
+import { useState, useEffect, EventHandler, FormEventHandler } from "react"
+import {
+  messageSchema,
+  Participant,
+  NewRandomMessage,
+  OptionsChanged,
+} from "shared"
 import { useDrandClient } from "@/lib/useDrandClient"
 
 type RoomProps = {
@@ -13,6 +18,7 @@ type RoomProps = {
 
 export default function Room({ roomId, name, partyServerHost }: RoomProps) {
   const [participants, setParticipants] = useState<Participant[]>([])
+  const [options, setOptions] = useState<string>("")
   const [roundFromOther, setRoundFromOther] = useState<number>()
 
   const {
@@ -46,8 +52,11 @@ export default function Room({ roomId, name, partyServerHost }: RoomProps) {
         case "participants":
           setParticipants(msg.participants)
           break
-        case "NewRandom":
+        case "newRandom":
           setRoundFromOther(msg.round)
+          break
+        case "optionsChanged":
+          setOptions(msg.value ?? "")
           break
         default:
           console.error(`Unhandled message ${msg}`)
@@ -59,7 +68,7 @@ export default function Room({ roomId, name, partyServerHost }: RoomProps) {
   useEffect(() => {
     if (myRandomness) {
       const msg = {
-        type: "NewRandom",
+        type: "newRandom",
         round: myRandomness.round,
         connectionId: ws.id,
       } satisfies NewRandomMessage
@@ -69,6 +78,16 @@ export default function Room({ roomId, name, partyServerHost }: RoomProps) {
 
   function handleGenerateRandom() {
     fetchRandom?.()
+  }
+
+  function handleOptionsChanged(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const msg = {
+      type: "optionsChanged",
+      connectionId: ws.id,
+      value: e.target.value,
+    } satisfies OptionsChanged
+    setOptions(e.target.value)
+    ws.send(JSON.stringify(msg))
   }
 
   return (
@@ -88,6 +107,9 @@ export default function Room({ roomId, name, partyServerHost }: RoomProps) {
             <li key={p.connectionId}>{p.name}</li>
           ))}
         </ul>
+      </section>
+      <section id="options">
+        <textarea onChange={handleOptionsChanged} value={options}></textarea>
       </section>
     </main>
   )

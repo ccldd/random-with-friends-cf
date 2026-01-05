@@ -23,9 +23,15 @@ export const participantsListSchema = z.object({
 })
 
 export const newRandomMessageSchema = z.object({
-  type: z.literal("NewRandom"),
+  type: z.literal("newRandom"),
   round: z.number().positive(),
   connectionId: z.string().nonempty(),
+})
+
+export const optionsChangedSchema = z.object({
+  type: z.literal("optionsChanged"),
+  connectionId: z.string().nonempty(),
+  value: z.string().optional(),
 })
 
 export const messageSchema = z.discriminatedUnion("type", [
@@ -33,6 +39,7 @@ export const messageSchema = z.discriminatedUnion("type", [
   disconnectedMessageSchema,
   participantsListSchema,
   newRandomMessageSchema,
+  optionsChangedSchema,
 ])
 
 export type Message = z.infer<typeof messageSchema>
@@ -41,3 +48,4 @@ export type DisconnectedMessage = z.infer<typeof disconnectedMessageSchema>
 export type Participant = z.infer<typeof participantSchema>
 export type ParticipantsMessage = z.infer<typeof participantsListSchema>
 export type NewRandomMessage = z.infer<typeof newRandomMessageSchema>
+export type OptionsChanged = z.infer<typeof optionsChangedSchema>
